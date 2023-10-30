@@ -1,0 +1,54 @@
+@import "./variables";
+
+.button-wrap__btn {
+  min-width: 150px;
+  height: 100%;
+  padding: 5px 10px;
+  border: none;
+  border-radius: $radius;
+  font-size: $size;
+  cursor: pointer;
+  color: #fff;
+}
+
+.green {
+  background: #048504;
+
+  &:hover {
+    background: #079407;
+  }
+
+  &:active {
+    background: #0b730b;
+  }
+
+  &:disabled {
+    background-color: #888686;
+    cursor: default;
+  }
+}
+
+.red {
+  background: #c90404;
+
+  &:hover {
+    background: #ec0505;
+  }
+
+  &:active {
+    background: #cb0404;
+  }
+}
+
+
+.blue {
+  background: #0000f8;
+
+  &:hover {
+    background: #103ffd;
+  }
+
+  &:active {
+    background: #0513e0;
+  }
+}
