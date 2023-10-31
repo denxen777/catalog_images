@@ -2,4 +2,6 @@
 
 .img {
   cursor: pointer;
+  overflow: hidden;
+  object-fit: cover;
 }

@@ -4,11 +4,4 @@
   padding: 10px;
   border: 2px solid $border_color;
   border-radius: $radius;
-
-  &__list {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-top: 15px;
-  }
 }

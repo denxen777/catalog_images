@@ -12,19 +12,21 @@ export const GroupListImages: FC<IListImages> = ({ onClickSetTag }) => {
   for (const key in groupImages) {
     const result = (
       <div className='groupListImages' key={key}>
-        <h1>{key}</h1>
-        <div className='groupListImages__list'>
-          <div className='wrap-img'>
-            {groupImages[key].map(img => {
-              return (
+        <h1>
+          <i>{key}</i>
+        </h1>
+        <div className='list-images'>
+          {groupImages[key].map(img => {
+            return (
+              <div className='list-images__img'>
                 <Image
                   key={img.id}
                   path={img.images.fixed_height.url}
                   onClick={onClickSetTag(img.tag)}
                 />
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     );
@@ -33,33 +35,3 @@ export const GroupListImages: FC<IListImages> = ({ onClickSetTag }) => {
 
   return <>{data}</>;
 };
-
-/*export const GroupListImages: FC<IListImages> = ({ onClickSetTag }) => {
-  const groupImages = useSelector(selectGroupImages);
-
-  return (
-    <>
-      {groupImages.map(obj => {
-        const key = Object.keys(obj).join('');
-        return (
-          <div className='groupListImages'>
-            <h1>{key}</h1>
-            <div className='groupListImages__list'>
-              <div className='wrap-img'>
-                {obj[key].map(img => {
-                  return (
-                    <Image
-                      key={img.id}
-                      path={img.images.fixed_height.url}
-                      onClick={onClickSetTag(img.tag)}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </>
-  );
-};*/

@@ -15,7 +15,7 @@ export const ListImages: FC<IListImages> = ({ onClickSetTag }) => {
     <div className='list-images'>
       {images.map((arr, idx) => {
         return (
-          <div className='wrap-img' key={idx}>
+          <div className='list-images__img' key={idx}>
             {arr.map(img => {
               return (
                 <Image

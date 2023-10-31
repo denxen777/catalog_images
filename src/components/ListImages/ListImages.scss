@@ -1,7 +1,19 @@
 @import "../../scss/variables";
 
 .list-images {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
-  flex-wrap: wrap;
+  justify-items: center;
+
+  &__img {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+    padding: 5px;
+    border: 2px solid $border_color;
+    border-radius: $radius;
+    width: 300px;
+    height: 300px;
+  }
 }
