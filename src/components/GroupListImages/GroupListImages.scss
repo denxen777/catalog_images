@@ -2,8 +2,13 @@
 
 .groupListImages {
   padding: 10px;
+  border: 2px solid $border_color;
+  border-radius: $radius;
 
-  &__inner {
-    border: 2px solid $border_color;
+  &__list {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 15px;
   }
 }

@@ -1,12 +1,10 @@
-//ТИПИЗИРОВАТЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-import { IImageData } from '../redux/interfaces';
+import { IImageData, TGroupImages } from '../redux/interfaces';
 
 export const getGroupImages = (arr: IImageData[]) => {
-  return arr.reduce((acc: any, val) => {
-    const prop = val.tag;
+  return arr.reduce((acc, img) => {
+    const prop = img.tag;
     acc[prop] = acc[prop] || [];
-    acc[prop].push(val);
+    acc[prop].push(img);
     return acc;
-  }, {});
+  }, {} as TGroupImages);
 };

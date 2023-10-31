@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ICatalogState, IImageData } from './interfaces';
+import { ICatalogState, IImageData, TGroupImages } from './interfaces';
 
 const initialState: ICatalogState = {
   isGroup: false,
   searchValue: '',
   images: [],
-  groupImages: [],
+  groupImages: {},
 };
 
 const reducer = createSlice({
@@ -16,7 +16,7 @@ const reducer = createSlice({
     addImage: (state, action: PayloadAction<IImageData>) => {
       state.images.push(action.payload);
     },
-    addGroupImages: (state, action) => {
+    addGroupImages: (state, action: PayloadAction<TGroupImages>) => {
       state.groupImages = action.payload;
     },
     clearImages: state => {

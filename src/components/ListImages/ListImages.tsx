@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 import { useSelector } from 'react-redux';
-import {
-  selectGroupImages,
-  selectImages,
-  selectIsGroup,
-} from '../../redux/selectors';
 
-export const ListImages = () => {
+import { selectImages } from '../../redux/selectors';
+import { Image } from '../Image/Image';
+
+export interface IListImages {
+  onClickSetTag: (tag: string) => MouseEventHandler<HTMLImageElement>;
+}
+
+export const ListImages: FC<IListImages> = ({ onClickSetTag }) => {
   const images = useSelector(selectImages);
 
   return (
     <div className='list-images'>
       {images.map(val => (
-        <div className='list-images__wrap-img' key={val.id}>
-          <img
-            className='list-images__img'
-            src={val.images.original.url}
-            alt='img'
-          />
-        </div>
+        <Image
+          path={val.images.fixed_height.url}
+          key={val.id}
+          onClick={onClickSetTag(val.tag)}
+        />
       ))}
     </div>
   );

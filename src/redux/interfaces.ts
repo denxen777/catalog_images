@@ -1,11 +1,10 @@
 import { IImagesData } from '../api/interfaces';
 
-//ТИПИЗИРОВАТЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 export interface ICatalogState {
   isGroup: boolean;
   searchValue: string;
   images: IImageData[];
-  groupImages: any;
+  groupImages: TGroupImages;
 }
 
 export interface IImageData {
@@ -13,3 +12,5 @@ export interface IImageData {
   images: IImagesData;
   tag: string;
 }
+
+export type TGroupImages = Record<string, IImageData[]>;

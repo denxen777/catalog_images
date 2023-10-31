@@ -18,27 +18,28 @@ export const DownloadButton = () => {
     queryKey: ['image'],
     queryFn: () => getImage(searchValue),
     enabled: false,
-    onSuccess: res => {
-      if (res.images == null) {
+    onSuccess: data => {
+      if (data.images == null) {
         alert('По тегу ничего не найдено');
         return;
       }
       const imageData: IImageData = {
-        id: res.id,
-        images: res.images,
+        id: data.id,
+        images: data.images,
         tag: searchValue,
       };
 
       dispatch(addImage(imageData));
-
-      const groupImages = getGroupImages(images);
-      console.log(groupImages);
-      dispatch(addGroupImages(groupImages));
     },
     onError: (err: any) => {
       alert('Произошла http ошибка: ' + err.response.status);
     },
   });
+
+  useEffect(() => {
+    const groupImages = getGroupImages(images);
+    dispatch(addGroupImages(groupImages));
+  }, [images]);
 
   const onClick = async () => {
     if (searchValue == null || searchValue === '') {
