@@ -1,9 +1,10 @@
 import { IImagesData } from '../api/interfaces';
 
 export interface ICatalogState {
+  timerId: number;
   isGroup: boolean;
   searchValue: string;
-  images: IImageData[];
+  images: IImageData[][];
   groupImages: TGroupImages;
 }
 

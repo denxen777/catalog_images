@@ -1,10 +1,12 @@
 import { IImageData, TGroupImages } from '../redux/interfaces';
 
-export const getGroupImages = (arr: IImageData[]) => {
-  return arr.reduce((acc, img) => {
-    const prop = img.tag;
-    acc[prop] = acc[prop] || [];
-    acc[prop].push(img);
-    return acc;
+export const getGroupImages = (arr: IImageData[][]) => {
+  return arr.reduce((accum, val) => {
+    val.forEach(v => {
+      const prop = v.tag;
+      accum[prop] = accum[prop] || [];
+      accum[prop].push(v);
+    });
+    return accum;
   }, {} as TGroupImages);
 };

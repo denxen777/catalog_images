@@ -1,6 +1,14 @@
 import { config } from './config';
-import {  IResponseData } from "./interfaces";
+import { IResponseData } from './interfaces';
 
 export const getImage = async (value: string) => {
-  return await config.get<IResponseData>(`&tag=${value}`).then(res => res.data.data);
+  const values = value.split(',').filter(val => val !== '');
+
+  const result = values.map(async val => {
+    return await config
+      .get<IResponseData>(`&tag=${val}`)
+      .then(res => res.data.data);
+  });
+
+  return Promise.all(result);
 };

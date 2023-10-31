@@ -6,9 +6,5 @@ interface IImage {
 }
 
 export const Image: FC<IImage> = ({ path, onClick }) => {
-  return (
-    <div className='image-wrap'>
-      <img className='image-wrap__img' onClick={onClick} src={path} alt='img' />
-    </div>
-  );
+  return <img className='img' onClick={onClick} src={path} alt='img' />;
 };

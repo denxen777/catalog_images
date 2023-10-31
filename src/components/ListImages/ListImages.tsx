@@ -13,13 +13,21 @@ export const ListImages: FC<IListImages> = ({ onClickSetTag }) => {
 
   return (
     <div className='list-images'>
-      {images.map(val => (
-        <Image
-          path={val.images.fixed_height.url}
-          key={val.id}
-          onClick={onClickSetTag(val.tag)}
-        />
-      ))}
+      {images.map(arr => {
+        return (
+          <div className='wrap-img'>
+            {arr.map(img => {
+              return (
+                <Image
+                  key={img.id}
+                  path={img.images.fixed_height.url}
+                  onClick={onClickSetTag(img.tag)}
+                />
+              );
+            })}
+          </div>
+        );
+      })}
     </div>
   );
 };

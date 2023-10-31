@@ -9,3 +9,5 @@ export const selectIsGroup = (state: TRootState) => state.catalog.isGroup;
 
 export const selectGroupImages = (state: TRootState) =>
   state.catalog.groupImages;
+
+export const selectTimerId = (state: TRootState) => state.catalog.timerId;

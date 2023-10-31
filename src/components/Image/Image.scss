@@ -1,14 +1,5 @@
 @import "../../scss/variables";
 
-.image-wrap {
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-  padding: 5px;
-  border: 2px solid $border_color;
-  border-radius: $radius;
-
-  &__img {
-    cursor: pointer;
-  }
+.img {
+  cursor: pointer;
 }

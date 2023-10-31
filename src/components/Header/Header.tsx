@@ -13,9 +13,11 @@ export const Header = () => {
   const searchValue = useSelector(selectSearchValue);
 
   const onChangeSearchValue = (val: string) => {
-    const res = val.match(/^[a-zA-Z,]*$/);
+    const newValue = val.replace(/^,+/, '');
+
+    const res = newValue.match(/^[a-zA-Z,]*$/);
     if (res !== null) {
-      dispatch(setSearchValue(val));
+      dispatch(setSearchValue(newValue));
     }
   };
 
