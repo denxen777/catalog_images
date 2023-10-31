@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Button } from './Button';
+import { Button } from './Button/Button';
 import { setSearchValue, clearImages } from '../redux/reducer';
 
 export const ClearButton = () => {

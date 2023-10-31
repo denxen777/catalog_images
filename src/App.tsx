@@ -1,15 +1,13 @@
 import React from 'react';
 
-import { ListImages } from './components/ListImages';
-import { Header } from './components/Header';
+import { Header } from './components/Header/Header';
+import { Content } from './components/Content/Content';
 
 export function App() {
   return (
     <div className='container'>
       <Header />
-      <div className='content'>
-        <ListImages />
-      </div>
+      <Content />
     </div>
   );
 }

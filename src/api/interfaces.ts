@@ -33,34 +33,47 @@ interface IMeta {
   response_id: string;
 }
 
-interface IImagesData {
-  original: {};
-  downsized: IImage;
-  downsized_large: IImage;
-  downsized_medium: IImage;
+export interface IImagesData {
+  original: IImage0;
+  downsized: IImage1;
+  downsized_large: IImage1;
+  downsized_medium: IImage1;
   downsized_small: IImage2;
-  downsized_still: IImage;
+  downsized_still: IImage1;
   fixed_height: IImage3;
   fixed_height_downsampled: IImage4;
   fixed_height_small: IImage3;
-  fixed_height_small_still: IImage;
-  fixed_height_still: IImage;
+  fixed_height_small_still: IImage1;
+  fixed_height_still: IImage1;
   fixed_width: IImage3;
   fixed_width_downsampled: IImage4;
   fixed_width_small: IImage3;
-  fixed_width_small_still: IImage;
-  fixed_width_still: IImage;
+  fixed_width_small_still: IImage1;
+  fixed_width_still: IImage1;
   looping: IImage5;
-  original_still: IImage;
-  original_mp4: IImage;
+  original_still: IImage1;
+  original_mp4: IImage1;
   preview: IImage2;
-  preview_gif: IImage;
-  preview_webp: IImage;
+  preview_gif: IImage1;
+  preview_webp: IImage1;
   hd: IImage2;
-  '480w_still': IImage;
+  '480w_still': IImage1;
 }
 
-interface IImage {
+interface IImage0 {
+  height: string;
+  width: string;
+  size: string;
+  url: string;
+  mp4_size: string;
+  mp4: string;
+  webp_size: string;
+  webp: string;
+  frames: string;
+  hash: string;
+}
+
+interface IImage1 {
   height: string;
   width: string;
   size: string;

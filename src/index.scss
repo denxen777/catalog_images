@@ -1,7 +1,10 @@
-@import './scss/app';
-@import './scss/input';
-@import './scss/button';
-@import './scss/list-images';
+@import 'App';
+@import 'components/Input/Input';
+@import 'components/Button/Button';
+@import 'components/ListImages/ListImages';
+@import 'components/GroupListImages/GroupListImages';
+@import "./components/Header/Header";
+@import "./components/Content/Content";
 
 * {
   margin: 0;

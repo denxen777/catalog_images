@@ -1,30 +1,39 @@
-import React, { FC } from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button } from './Button';
+import { Button } from './Button/Button';
 import { getImage } from '../api/api';
-import { addImage } from '../redux/reducer';
-import { selectSearchValue } from '../redux/selectors';
+import { addGroupImages, addImage } from '../redux/reducer';
+import { selectImages, selectSearchValue } from '../redux/selectors';
+import { getGroupImages } from '../utils/getGroupImages';
+import { IImageData } from '../redux/interfaces';
 
-interface IDownloadButton {}
-
-export const DownloadButton: FC<IDownloadButton> = () => {
+export const DownloadButton = () => {
   const dispatch = useDispatch();
   const searchValue = useSelector(selectSearchValue);
+  const images = useSelector(selectImages);
 
   const { refetch, isFetching } = useQuery({
     queryKey: ['image'],
     queryFn: () => getImage(searchValue),
     enabled: false,
     onSuccess: res => {
-      const { images } = res;
-
-      if (images == null) {
+      if (res.images == null) {
         alert('По тегу ничего не найдено');
         return;
       }
-      dispatch(addImage(images.downsized.url));
+      const imageData: IImageData = {
+        id: res.id,
+        images: res.images,
+        tag: searchValue,
+      };
+
+      dispatch(addImage(imageData));
+
+      const groupImages = getGroupImages(images);
+      console.log(groupImages);
+      dispatch(addGroupImages(groupImages));
     },
     onError: (err: any) => {
       alert('Произошла http ошибка: ' + err.response.status);

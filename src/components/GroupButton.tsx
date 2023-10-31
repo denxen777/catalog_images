@@ -1,14 +1,21 @@
 import React from 'react';
-import { Button } from './Button';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { Button } from './Button/Button';
+import { selectIsGroup } from '../redux/selectors';
+import { setIsGroup } from '../redux/reducer';
 
 export const GroupButton = () => {
+  const dispatch = useDispatch();
+  const isGroup = useSelector(selectIsGroup);
+
   const onClick = () => {
-    console.log('group');
+    dispatch(setIsGroup(!isGroup));
   };
 
   return (
     <Button color='blue' onClick={onClick}>
-      Группировать
+      {isGroup ? 'Разгруппировать' : 'Группировать'}
     </Button>
   );
 };
