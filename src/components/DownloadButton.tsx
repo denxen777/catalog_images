@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from './Button/Button';
-import { getImage } from '../api/api';
+import { getImages } from '../api/ImageService';
 import {
   addGroupImages,
   addImage,
@@ -27,21 +27,22 @@ export const DownloadButton = () => {
 
   const { refetch, isFetching } = useQuery({
     queryKey: ['image'],
-    queryFn: () => getImage(searchValue),
+    queryFn: () => getImages(searchValue),
     enabled: false,
     onSuccess: data => {
+      console.log(data);
       const res: IImageData[] = [];
 
       data.forEach(img => {
-        if (img.images == null) {
+        if (img.data.images == null) {
           alert('По тегу ничего не найдено');
           return;
         }
 
         const imageData: IImageData = {
-          id: img.id,
-          images: img.images,
-          tag: searchValue,
+          id: img.data.id,
+          images: img.data.images,
+          tag: img.tag,
         };
 
         res.push(imageData);
@@ -56,7 +57,7 @@ export const DownloadButton = () => {
   useEffect(() => {
     const groupImages = getGroupImages(images);
     dispatch(addGroupImages(groupImages));
-    console.log(groupImages);
+
     return () => clearInterval(timerId);
   }, [images]);
 

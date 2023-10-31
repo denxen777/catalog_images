@@ -1,14 +1,8 @@
-import { config } from './config';
-import { IResponseData } from './interfaces';
+import axios from 'axios';
 
-export const getImage = async (value: string) => {
-  const values = value.split(',').filter(val => val !== '');
+const URL =
+  'https://api.giphy.com/v1/gifs/random?api_key=gTJAO48YcpmrADUyo4opy4ES4g7iDBxx&';
 
-  const result = values.map(async val => {
-    return await config
-      .get<IResponseData>(`&tag=${val}`)
-      .then(res => res.data.data);
-  });
-
-  return Promise.all(result);
-};
+export const api = axios.create({
+  baseURL: URL,
+});
