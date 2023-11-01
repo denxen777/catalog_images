@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from './Button/Button';
-import { setSearchValue, clearImages } from '../redux/reducer';
+import { clearImages, setSearchValue } from '../redux/reducer';
 import { selectTimerId } from '../redux/selectors';
 
 export const ClearButton = () => {
@@ -12,7 +12,9 @@ export const ClearButton = () => {
   const onClick = () => {
     dispatch(setSearchValue(''));
     dispatch(clearImages());
-    if (timerId !== null) clearInterval(timerId);
+    if (timerId !== null) {
+      clearInterval(timerId);
+    }
   };
 
   return (

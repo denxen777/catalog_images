@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,11 +10,7 @@ import {
   setSearchValue,
   setTimerId,
 } from '../redux/reducer';
-import {
-  selectImages,
-  selectSearchValue,
-  selectTimerId,
-} from '../redux/selectors';
+import { selectImages, selectSearchValue } from '../redux/selectors';
 import { getGroupImages } from '../utils/getGroupImages';
 import { getRandomTag } from '../utils/getRandomTag';
 import { IImageData } from '../redux/interfaces';
@@ -52,9 +48,8 @@ export const DownloadButton = () => {
   });
 
   useEffect(() => {
-    const groupImages = getGroupImages(images);
-    dispatch(addGroupImages(groupImages));
-  }, [images]);
+    dispatch(addGroupImages(getGroupImages(images)));
+  }, [images, dispatch]);
 
   const onClick = async () => {
     const result = /^,+$/.test(searchValue);
@@ -68,7 +63,7 @@ export const DownloadButton = () => {
       const timerId = window.setInterval(async () => {
         dispatch(setSearchValue(getRandomTag()));
         await refetch();
-      }, 3000);
+      }, 5000);
       dispatch(setTimerId(timerId));
       return;
     }

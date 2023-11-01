@@ -1,4 +1,4 @@
-import { IImagesData } from '../api/interfaces';
+import { IImages } from '../api/interfaces';
 
 export interface ICatalogState {
   timerId: number | null;
@@ -10,7 +10,7 @@ export interface ICatalogState {
 
 export interface IImageData {
   id: string;
-  images: IImagesData;
+  images: IImages;
   tag: string;
 }
 

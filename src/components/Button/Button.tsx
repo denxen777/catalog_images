@@ -7,7 +7,12 @@ interface IButton {
   disabled?: boolean;
 }
 
-export const Button: FC<IButton> = ({ children, color, disabled, onClick }) => {
+export const Button: FC<IButton> = ({
+  children,
+  color,
+  disabled = false,
+  onClick,
+}) => {
   return (
     <div className='button-wrap'>
       <button

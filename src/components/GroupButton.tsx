@@ -9,12 +9,8 @@ export const GroupButton = () => {
   const dispatch = useDispatch();
   const isGroup = useSelector(selectIsGroup);
 
-  const onClick = () => {
-    dispatch(setIsGroup(!isGroup));
-  };
-
   return (
-    <Button color='blue' onClick={onClick}>
+    <Button color='blue' onClick={() => dispatch(setIsGroup(!isGroup))}>
       {isGroup ? 'Разгруппировать' : 'Группировать'}
     </Button>
   );

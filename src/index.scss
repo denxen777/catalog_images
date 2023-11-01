@@ -1,14 +1,12 @@
-@import 'App';
-@import 'components/Input/Input';
-@import 'components/Button/Button';
-@import 'components/ListImages/ListImages';
-@import 'components/GroupListImages/GroupListImages';
-@import "./components/Header/Header";
-@import "./components/Content/Content";
-@import "./components/Image/Image";
+@import "scss/all";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", "serif";
+}
+
+body {
+  background-color: rgba(203, 199, 199, 0.62);
 }

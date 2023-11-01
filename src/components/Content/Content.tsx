@@ -11,9 +11,7 @@ export const Content = () => {
   const isGroup = useSelector(selectIsGroup);
 
   const onClickSetTag = (tag: string) => {
-    return () => {
-      dispatch(setSearchValue(tag));
-    };
+    return () => dispatch(setSearchValue(tag));
   };
 
   return (
