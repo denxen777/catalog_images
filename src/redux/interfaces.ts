@@ -5,7 +5,6 @@ export interface ICatalogState {
   isGroup: boolean;
   searchValue: string;
   images: IImageData[][];
-  groupImages: TGroupImages;
 }
 
 export interface IImageData {

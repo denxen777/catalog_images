@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { GroupListImages } from '../GroupListImages/GroupListImages';
@@ -10,9 +10,12 @@ export const Content = () => {
   const dispatch = useDispatch();
   const isGroup = useSelector(selectIsGroup);
 
-  const onClickSetTag = (tag: string) => {
-    return () => dispatch(setSearchValue(tag));
-  };
+  const onClickSetTag = useCallback(
+    (tag: string) => {
+      return () => dispatch(setSearchValue(tag));
+    },
+    [dispatch],
+  );
 
   return (
     <div className='content'>

@@ -1,24 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button } from './Button/Button';
-import { getImages } from '../api/ImageService';
-import {
-  addGroupImages,
-  addImage,
-  setSearchValue,
-  setTimerId,
-} from '../redux/reducer';
-import { selectImages, selectSearchValue } from '../redux/selectors';
-import { getGroupImages } from '../utils/getGroupImages';
-import { getRandomTag } from '../utils/getRandomTag';
-import { IImageData } from '../redux/interfaces';
+import { Button } from '../Button/Button';
+import { getImages } from '../../api/ImageService';
+import { addImage, setSearchValue, setTimerId } from '../../redux/reducer';
+import { selectSearchValue } from '../../redux/selectors';
+import { getRandomTag } from '../../utils/getRandomTag';
+import { IImageData } from '../../redux/interfaces';
 
 export const DownloadButton = () => {
   const dispatch = useDispatch();
   const searchValue = useSelector(selectSearchValue);
-  const images = useSelector(selectImages);
 
   const { refetch, isFetching } = useQuery({
     queryKey: ['image'],
@@ -46,10 +39,6 @@ export const DownloadButton = () => {
     },
     onError: (err: any) => alert('Произошла http ошибка: ' + err),
   });
-
-  useEffect(() => {
-    dispatch(addGroupImages(getGroupImages(images)));
-  }, [images, dispatch]);
 
   const onClick = async () => {
     const result = /^,+$/.test(searchValue);

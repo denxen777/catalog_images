@@ -1,13 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ICatalogState, IImageData, TGroupImages } from './interfaces';
+import { ICatalogState, IImageData } from './interfaces';
 
 const initialState: ICatalogState = {
   timerId: null,
   isGroup: false,
   searchValue: '',
   images: [],
-  groupImages: {},
 };
 
 const catalog = createSlice({
@@ -16,9 +15,6 @@ const catalog = createSlice({
   reducers: {
     addImage: (state, action: PayloadAction<IImageData[]>) => {
       state.images.push(action.payload);
-    },
-    addGroupImages: (state, action: PayloadAction<TGroupImages>) => {
-      state.groupImages = action.payload;
     },
     clearImages: state => {
       state.images = [];
@@ -35,13 +31,7 @@ const catalog = createSlice({
   },
 });
 
-export const {
-  setSearchValue,
-  addImage,
-  clearImages,
-  addGroupImages,
-  setIsGroup,
-  setTimerId,
-} = catalog.actions;
+export const { setSearchValue, addImage, clearImages, setIsGroup, setTimerId } =
+  catalog.actions;
 
 export default catalog.reducer;
