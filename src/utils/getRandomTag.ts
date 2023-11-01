@@ -7,9 +7,11 @@ export const getRandomTag = () => {
     'earth',
     'tree',
     'ran',
-    'dactyl',
     'bin',
+    'hello',
   ];
-  const tag = Math.floor(Math.random() * tags.length);
-  return tag <= 10 ? tags[tag] : '';
+  const num = Math.floor(Math.random() * tags.length);
+  const tag = tags[num];
+
+  return tag.length <= 10 ? tag : '';
 };

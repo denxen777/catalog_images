@@ -1,4 +1,4 @@
-import { api } from './api';
+import { api, API_KEY } from './api';
 import { IResponseData } from './interfaces';
 
 export const getImages = async (value: string) => {
@@ -6,7 +6,7 @@ export const getImages = async (value: string) => {
 
   const result = tags.map(async tag => {
     return await api
-      .get<IResponseData>(`&tag=${tag}`)
+      .get<IResponseData>(`?api_key=${API_KEY}&tag=${tag}`)
       .then(res => res.data.data)
       .then(data => ({
         data,

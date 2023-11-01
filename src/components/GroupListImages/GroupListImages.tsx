@@ -18,9 +18,10 @@ export const GroupListImages: FC<IListImages> = ({ onClickSetTag }) => {
         <div className='list-images'>
           {groupImages[key].map(img => {
             return (
-              <div className='list-images__img'>
+              <div className='list-images__img' key={img.id}>
                 <Image
                   key={img.id}
+                  alt={img.tag}
                   path={img.images.fixed_height.url}
                   onClick={onClickSetTag(img.tag)}
                 />

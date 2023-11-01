@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -23,56 +23,52 @@ export const DownloadButton = () => {
   const dispatch = useDispatch();
   const searchValue = useSelector(selectSearchValue);
   const images = useSelector(selectImages);
-  const timerId = useSelector(selectTimerId);
 
   const { refetch, isFetching } = useQuery({
     queryKey: ['image'],
     queryFn: () => getImages(searchValue),
     enabled: false,
     onSuccess: data => {
-      console.log(data);
-      const res: IImageData[] = [];
+      const result: IImageData[] = [];
 
-      data.forEach(img => {
-        if (img.data.images == null) {
+      data.forEach(val => {
+        if (val.data.id == null) {
           alert('По тегу ничего не найдено');
           return;
         }
 
         const imageData: IImageData = {
-          id: img.data.id,
-          images: img.data.images,
-          tag: img.tag,
+          id: val.data.id,
+          images: val.data.images,
+          tag: val.tag,
         };
 
-        res.push(imageData);
+        result.push(imageData);
       });
 
-      dispatch(addImage(res));
+      if (!!result.length) dispatch(addImage(result));
     },
-    onError: (err: any) =>
-      alert('Произошла http ошибка: ' + err.response.status),
+    onError: (err: any) => alert('Произошла http ошибка: ' + err),
   });
 
   useEffect(() => {
     const groupImages = getGroupImages(images);
     dispatch(addGroupImages(groupImages));
-
-    return () => clearInterval(timerId);
   }, [images]);
 
   const onClick = async () => {
-    if (searchValue == null || searchValue === '') {
+    const result = /^,+$/.test(searchValue);
+    if (searchValue == null || searchValue === '' || result) {
       alert('заполните поле "тег"');
+      return;
     }
 
     if (searchValue === 'delay') {
+      dispatch(setSearchValue(getRandomTag()));
       const timerId = window.setInterval(async () => {
-        const randomTag = getRandomTag();
-        dispatch(setSearchValue(randomTag));
-
+        dispatch(setSearchValue(getRandomTag()));
         await refetch();
-      }, 5000);
+      }, 3000);
       dispatch(setTimerId(timerId));
       return;
     }

@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import catalog from './reducer';
 
 export const store = configureStore({

@@ -12,7 +12,7 @@ export const ClearButton = () => {
   const onClick = () => {
     dispatch(setSearchValue(''));
     dispatch(clearImages());
-    clearInterval(timerId);
+    if (timerId !== null) clearInterval(timerId);
   };
 
   return (

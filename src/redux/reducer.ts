@@ -3,14 +3,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ICatalogState, IImageData, TGroupImages } from './interfaces';
 
 const initialState: ICatalogState = {
-  timerId: 0,
+  timerId: null,
   isGroup: false,
   searchValue: '',
   images: [],
   groupImages: {},
 };
 
-const reducer = createSlice({
+const catalog = createSlice({
   name: 'catalog',
   initialState,
   reducers: {
@@ -42,6 +42,6 @@ export const {
   addGroupImages,
   setIsGroup,
   setTimerId,
-} = reducer.actions;
+} = catalog.actions;
 
-export default reducer.reducer;
+export default catalog.reducer;

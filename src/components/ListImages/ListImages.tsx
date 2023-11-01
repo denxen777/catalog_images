@@ -21,6 +21,7 @@ export const ListImages: FC<IListImages> = ({ onClickSetTag }) => {
                 <Image
                   key={img.id}
                   path={img.images.fixed_height.url}
+                  alt={img.tag}
                   onClick={onClickSetTag(img.tag)}
                 />
               );

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 interface IInput {
   value: string;
-  onChange: (val: string) => void;
+  onChange: (value: string) => void;
 }
 
 export const Input: FC<IInput> = ({ value, onChange }) => {
