@@ -1,5 +1,4 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '../Button/Button';
