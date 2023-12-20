@@ -8,15 +8,16 @@ import { addImage, setSearchValue, setTimerId } from '../../redux/reducer';
 import { selectSearchValue } from '../../redux/selectors';
 import { getRandomTag } from '../../utils/getRandomTag';
 import { IImageData } from '../../redux/interfaces';
+import { useMyQuery } from '../../hooks/useMyQuery';
+import {IResponseData} from "../../api/interfaces";
 
 export const DownloadButton = () => {
   const dispatch = useDispatch();
   const searchValue = useSelector(selectSearchValue);
 
-  const { refetch, isFetching } = useQuery({
-    queryKey: ['image'],
-    queryFn: () => getImages(searchValue),
+  const { refetch, isLoading } = useMyQuery<IResponseData[]>({
     enabled: false,
+    queryFn: () => getImages(searchValue),
     onSuccess: data => {
       const result: IImageData[] = [];
 
@@ -61,8 +62,8 @@ export const DownloadButton = () => {
   };
 
   return (
-    <Button color='green' disabled={isFetching} onClick={onClick}>
-      {isFetching ? 'Загрузка...' : 'Загрузить'}
+    <Button color='green' disabled={isLoading} onClick={onClick}>
+      {isLoading ? 'Загрузка...' : 'Загрузить'}
     </Button>
   );
 };

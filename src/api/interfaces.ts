@@ -1,5 +1,6 @@
 export interface IResponseData {
   data: IData;
+  tag: string;
 }
 
 export interface IData {
