@@ -11,7 +11,7 @@ export const Input: FC<IInput> = ({ value, onChange }) => {
       <input
         className='input-wrap__input'
         type='text'
-        placeholder='Введите тег'
+        placeholder='cats,dogs,cars...'
         value={value}
         onChange={ev => onChange(ev.target.value)}
       />
